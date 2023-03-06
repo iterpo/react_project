@@ -1,5 +1,5 @@
 import React from "react"
-import { Link, useMatch, useResolvedPath } from "react-router-dom"
+import { Link} from "react-router-dom"
 
 export default function Navbar() {
   return (
@@ -13,7 +13,7 @@ export default function Navbar() {
       </Link>
 
       <Link to="/add_new_course" className="site-title" >
-        Add New Course
+        AddNewCourse
       </Link>
     </nav>
   )
