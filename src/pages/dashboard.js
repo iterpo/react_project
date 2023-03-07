@@ -21,7 +21,7 @@ export default function Dashboard() {
         alignItems: 'flex-start',
         justifyContent: 'center',
         marginBottom: height *0.01,
-        padding: '40px'
+        padding: '30px'
       }
     
     }
