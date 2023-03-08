@@ -16,3 +16,19 @@ export function get5courses(){
     }, []);
     return data;
 }
+
+export function getAllStats(){
+    const  url = 'http://localhost:3001/stats';
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        axios.get(url)
+        .then(response => {
+            setData(response.data.slice(0, 5));
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }, []);
+    var amounts = data.map(item => item.amount);
+  return amounts;
+}

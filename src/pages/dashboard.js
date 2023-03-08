@@ -1,7 +1,7 @@
 import React from "react"
 
 import { Box, Typography,Card, Grid, CardContent, } from '@mui/material'
-import {get5courses} from '../utils/calls';
+import {get5courses, getAllStats} from '../utils/calls';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -44,6 +44,9 @@ export default function Dashboard() {
   var youth = 45;
   var year_running =10;
   var  women = 10;
+  var stats = getAllStats();
+
+
   var rows = [];
   function createData(title, online, price, dates, actions) {
     return { title, online, price, dates, actions };
@@ -114,7 +117,7 @@ export default function Dashboard() {
                       py: '1px', // vertical padding
                     }}
                   >
-                    {beneficiaries}
+                    {stats[0]}
                  </Box>
               </Typography>
             </CardContent>
@@ -136,7 +139,7 @@ export default function Dashboard() {
                       py: '1px', // vertical padding
                     }}
                   >
-                    {youth}%
+                    {stats[1]}
                  </Box>
               </Typography>
             </CardContent>
@@ -158,7 +161,7 @@ export default function Dashboard() {
                       py: '1px', // vertical padding
                     }}
                   >
-                    {year_running}
+                    {stats[2]}
                  </Box>
               </Typography>
             </CardContent>
@@ -180,7 +183,7 @@ export default function Dashboard() {
                       py: '1px', // vertical padding
                     }}
                   >
-                    {women}
+                    {stats[3]}
                  </Box>
               </Typography>
             </CardContent>
