@@ -194,23 +194,23 @@ export default function Dashboard() {
       <Table sx={{ marginTop:height *0.003 ,minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow>
-          <StyledTableCell>Title</StyledTableCell>
-            <StyledTableCell align="right">Online</StyledTableCell>
-            <StyledTableCell align="right">Price</StyledTableCell>
-            <StyledTableCell align="right">Date</StyledTableCell>
-            <StyledTableCell align="right">Actions</StyledTableCell>
+          <StyledTableCell align="center" >Title</StyledTableCell>
+            <StyledTableCell align="center">Online</StyledTableCell>
+            <StyledTableCell align="center">Price</StyledTableCell>
+            <StyledTableCell align="center">Date</StyledTableCell>
+            <StyledTableCell align="center">Actions</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
             <StyledTableRow key={row.title}>
-              <StyledTableCell component="th" scope="row">
+              <StyledTableCell align ="center" component="th" scope="row">
               {row.title}
               </StyledTableCell>
-              <StyledTableCell align="right"> {row.online ? <CheckCircle color="success" /> : <Cancel color="error" />} </StyledTableCell>
-              <StyledTableCell align="right">{row.price.normal} </StyledTableCell>
-              <StyledTableCell align="right">{row.dates.start_date} - {row.dates.end_date}</StyledTableCell>
-              <StyledTableCell align="right"><Link to={row.action} target='_blank' style = {{color:'primary.white'}}>
+              <StyledTableCell align="center"> {row.online ? <CheckCircle color="success" /> : <Cancel color="error" />} </StyledTableCell>
+              <StyledTableCell align="center">{row.price.normal} </StyledTableCell>
+              <StyledTableCell align="center">{row.dates.start_date} - {row.dates.end_date}</StyledTableCell>
+              <StyledTableCell align="center"><Link to={row.action} target='_blank' style = {{color:'primary.white'}}>
   <button style={{ backgroundColor: 'blue', fontSize: '18px' }}>View Details</button>
 </Link> </StyledTableCell>
 
