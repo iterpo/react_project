@@ -61,8 +61,8 @@ export default function Dashboard() {
       <div>
       <Box
       sx={{
-        maxWidth: width - 10 ,
-        height: height/4,
+        maxWidth: setWidth - 10 ,
+        height: setHeight/4,
         backgroundColor: '#F5F5F5',
         display: 'flex',
         flexDirection: 'column',
