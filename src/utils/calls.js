@@ -8,7 +8,34 @@ export function get5courses(){
     useEffect(() => {
         axios.get(url)
         .then(response => {
-            setData(response.data.slice(0, 5));
+            setData(response.data);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }, []);
+    return data;
+}
+
+
+    export async function getResponse(id) {
+        const response = await fetch(
+            `localhost:3001/courses/${id}`,
+            {
+                method: 'GET',
+            }
+        );
+        const data = await response.json(); // Extracting data as a JSON Object from the response
+        return data;
+    }
+
+
+export function  getCourse(id){
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        axios.get(`http://localhost:3001/courses/${id}`)
+        .then(response => {
+            setData(response.data);
         })
         .catch(error => {
             console.log(error);
@@ -32,3 +59,4 @@ export function getAllStats(){
     var amounts = data.map(item => item.amount);
   return amounts;
 }
+

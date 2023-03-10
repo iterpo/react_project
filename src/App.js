@@ -4,7 +4,8 @@ import { Route, Routes } from "react-router-dom"
 
 import Dashboard from "./pages/dashboard"
 import Courses from "./pages/courses"
-import AddNewCourse from "./pages/add_new_course"
+import AddCourseForm from "./pages/add_new_course"
+import CourseSinglePage from "./pages/cousesinglepage"
 
 function App() {
   return (
@@ -14,7 +15,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/courses" element={<Courses />} />
-          <Route path="/add_new_course" element={<AddNewCourse />} />
+          <Route path="/add_new_course" element={<AddCourseForm />} />
+          <Route path="/courses/:id" element={<CourseSinglePage />}>
+          
+        </Route>
         </Routes>
       </div>
     </>

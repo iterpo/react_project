@@ -1,7 +1,6 @@
 import React from "react"
-
-import { Box, Typography,Card, Grid, CardContent, } from '@mui/material'
-import {get5courses, getAllStats} from '../utils/calls';
+import { Box, Typography,Card, Grid, CardContent, Button, } from '@mui/material'
+import {  useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -10,10 +9,14 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { create } from "@mui/material/styles/createTransitions";
+
 import { Link } from 'react-router-dom';
 import CheckCircle from '@mui/icons-material/CheckCircle';
 import Cancel from '@mui/icons-material/Cancel';
+
+import { getAllStats,get5courses} from '../utils/calls';
+
+
 
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
@@ -25,7 +28,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
 }));
-
+  
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -35,15 +38,10 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     fontSize: 14,
   },
 }));
-
 export default function Dashboard() {
-
-  var data = get5courses();
+  const [ showMore, setShowMore ] = useState(null)
   
-  var beneficiaries = 25.000;
-  var youth = 45;
-  var year_running =10;
-  var  women = 10;
+  // var data = get5courses();
   var stats = getAllStats();
 
 
@@ -52,14 +50,21 @@ export default function Dashboard() {
     return { title, online, price, dates, actions };
   }
 
-  data.map(d =>(
-    rows.push(createData(d.title, d.online, d.price, d.dates, 'http://localhost:3001/courses/'+d.id ))
-  ))
-  
- 
+  // -----Get ----
+  const data = get5courses();
+
+   data.map((d) =>
+          rows.push(
+            createData(d.title, d.online, d.price, d.dates, "http://localhost:3001/courses/" + d.id)
+          )
+        );
+
+
+ // ------- 
 
   const [width, setWidth] = React.useState(window.innerWidth);
   const [height, setHeight] = React.useState(window.innerHeight);
+
     return (
       <div>
       <Box
@@ -190,38 +195,53 @@ export default function Dashboard() {
           </Card>
         </Grid>
     </Grid>
-    {rows.map((row) => (console.log((row.price))))}
     
-
-    <TableContainer component={Paper}>
-      <Table sx={{ marginTop:height *0.003 ,minWidth: 700 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-          <StyledTableCell align="center" >Title</StyledTableCell>
-            <StyledTableCell align="center">Online</StyledTableCell>
-            <StyledTableCell align="center">Price</StyledTableCell>
-            <StyledTableCell align="center">Date</StyledTableCell>
-            <StyledTableCell align="center">Actions</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.title}>
-              <StyledTableCell align ="center" component="th" scope="row">
-              {row.title}
-              </StyledTableCell>
-              <StyledTableCell align="center"> {row.online ? <CheckCircle color="success" /> : <Cancel color="error" />} </StyledTableCell>
-              <StyledTableCell align="center">{row.price.normal} </StyledTableCell>
-              <StyledTableCell align="center">{row.dates.start_date} - {row.dates.end_date}</StyledTableCell>
-              <StyledTableCell align="center"><Link to={row.action} target='_blank' style = {{color:'primary.white'}}>
-  <button style={{ backgroundColor: 'blue', fontSize: '18px' }}>View Details</button>
-</Link> </StyledTableCell>
-
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <>
+        <TableContainer component={Paper}>
+          <Table sx={{ marginTop: 1, minWidth: 700 }} aria-label="customized table">
+            <TableHead>
+              <TableRow>
+                <StyledTableCell align="center">Title</StyledTableCell>
+                <StyledTableCell align="center">Online</StyledTableCell>
+                <StyledTableCell align="center">Price</StyledTableCell>
+                <StyledTableCell align="center">Date</StyledTableCell>
+                <StyledTableCell align="center">Actions</StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+            {rows.slice(0, 5).map((filterRow, key) => (
+                <StyledTableRow key={filterRow.title}>
+                  <StyledTableCell align="center" component="th" scope="row">
+                    {filterRow.title}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {filterRow.online ? <CheckCircle color="success" /> : <Cancel color="error" />}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">{filterRow.price.normal} </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {filterRow.dates.start_date} - {filterRow.dates.end_date}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    <Link to={filterRow.actions} target="_blank" style={{ color: "primary.white" }}>
+                    <Button variant="contained"  color="primary" href={filterRow.actions} sx={{marginTop: 2, fontSize: 12}}>
+                          View Details
+                        </Button>
+                    </Link>{" "}
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        
+        <Button
+    className=" text-buttonColor float-left text-left cursor-pointer text-sm"
+    onClick={() => setShowMore(showMore === null)}  // set the currently expended item
+  >
+    click for more
+  </Button>
+      </>
+    
     
     </div>
 
