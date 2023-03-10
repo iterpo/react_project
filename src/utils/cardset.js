@@ -5,7 +5,9 @@ import {  Grid } from '@mui/material'
 
 const CardSet = ({data}) => {
     return (
-        <Grid container spacing={3}>
+        <Grid container spacing={3} 
+        alignItems="center"
+        justifyContent="center">
         {data.map((el)=>(console.log(el.dates.start_date)))};
           {data.map((cardData) => (
             <Grid item key={cardData.id} xs={12} sm={6} md={4} lg={3}>

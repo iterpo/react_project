@@ -55,7 +55,7 @@ export default function Dashboard() {
 
    data.map((d) =>
           rows.push(
-            createData(d.title, d.online, d.price, d.dates, "http://localhost:3001/courses/" + d.id)
+            createData(d.title, d.online, d.price, d.dates, `http://localhost:3000/courses/${d.id}`)
           )
         );
 
@@ -197,8 +197,8 @@ export default function Dashboard() {
     </Grid>
     
     <>
-        <TableContainer component={Paper}>
-          <Table sx={{ marginTop: 1, minWidth: 700 }} aria-label="customized table">
+        <TableContainer component={Paper} >
+          <Table sx={{ marginTop: 1, minWidth: 700, fontSize: 16 }} aria-label="customized table">
             <TableHead>
               <TableRow>
                 <StyledTableCell align="center">Title</StyledTableCell>
@@ -223,7 +223,7 @@ export default function Dashboard() {
                   </StyledTableCell>
                   <StyledTableCell align="center">
                     <Link to={filterRow.actions} target="_blank" style={{ color: "primary.white" }}>
-                    <Button variant="contained"  color="primary" href={filterRow.actions} sx={{marginTop: 2, fontSize: 12}}>
+                    <Button variant="contained"  color="primary" href={filterRow.actions} sx={{marginTop: 2, fontSize: 12, textDecoration: 'none'}}>
                           View Details
                         </Button>
                     </Link>{" "}
@@ -233,12 +233,11 @@ export default function Dashboard() {
             </TableBody>
           </Table>
         </TableContainer>
-        
-        <Button
-    className=" text-buttonColor float-left text-left cursor-pointer text-sm"
+         
+        <Button variant="contained"  color="primary"  sx={{marginTop: 2, fontSize: 16}}
     onClick={() => setShowMore(showMore === null)}  // set the currently expended item
   >
-    click for more
+    Click for more
   </Button>
       </>
     

@@ -25,7 +25,9 @@ export default function Courses() {
         );
         return (
           <div>
-            <CardSet data={rows} />
+            <CardSet data={rows} sx={{
+              align: 'center'
+            }}/>
           </div>
         );
       }

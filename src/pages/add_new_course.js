@@ -1,6 +1,6 @@
 import React from "react" 
 import { useState } from "react";
-import { Card,Button, CardContent, Checkbox, FormControl, FormControlLabel, Grid, InputLabel, TextField, Typography } from "@mui/material";
+import { Card, CardContent, Checkbox, FormControl, FormControlLabel, Grid, InputLabel, TextField, Typography } from "@mui/material";
 
 
 
@@ -121,7 +121,5 @@ export default function AddCourseForm() {
     </CardContent>
   </Card>
 
-  <Button type="submit" variant="contained"  color="primary" sx={{marginTop: 2, fontSize: 12}}>
-              Submit
-            </Button>
+  <button type="submit">Submit</button>
 </form>);}
