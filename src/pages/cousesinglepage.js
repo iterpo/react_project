@@ -46,13 +46,13 @@ function handleDelete(id){
               {_data.description}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p" >
-              Price: | Online : {_data.online ? <CheckCircle color="success" fontSize='5'/> : <Cancel color="error" fontSize='5' />}
+              Price: {_data.price && _data.price.normal} | Online : {_data.online ? <CheckCircle color="success" fontSize='5'/> : <Cancel color="error" fontSize='5' />}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
               Duration:{_data.duration}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              Dates: 
+              Dates: {_data.dates && _data.dates.start_date} - {_data.dates && _data.dates.end_date}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
               Description: {_data.description}
